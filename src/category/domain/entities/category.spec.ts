@@ -1,6 +1,6 @@
 import Category, { CategoryProps } from "./category";
 import { omit } from "lodash";
-import { validate as uuidValidate, v4 as uuidv4 } from "uuid";
+import UniqueEntityId from "../../@seedwork/domain/unique-entity-id.vo";
 
 describe("Category Unit Tests", () => {
   test("constructor of category", () => {
@@ -69,9 +69,13 @@ describe("Category Unit Tests", () => {
       const category = new Category(i.props, i.id);
 
       expect(category.id).not.toBeNull();
-      expect(uuidValidate(category.id)).toBeTruthy();
-      if (i.id?.length > 0) expect(category.id).toBe(i.id);
+      expect(category.id).toBeInstanceOf(UniqueEntityId);
+      if (i.id?.length > 0) expect(category.id.value).toBe(i.id);
     });
+
+    expect(() => {
+      new Category({ name: "Movie" }, "invalid-id");
+    }).toThrowError("ID must be a valid UUID");
   });
 
   test("getter of name prop", () => {
