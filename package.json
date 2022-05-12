@@ -7,7 +7,8 @@
     "ts-node": "ts-node",
     "tsc": "tsc",
     "clean:tsc": "rm tsconfig.tsbuildinfo",
-    "test": "npm run tsc -- --noEmit && jest"
+    "test": "npm run tsc -- --noEmit && jest",
+    "test:watch": "npm run test -- --watch"
   },
   "keywords": [],
   "author": "",
