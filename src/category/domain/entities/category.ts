@@ -23,6 +23,10 @@ export default class Category extends Entity<CategoryProps> {
     return this.props.description;
   }
 
+  private set name(value: string) {
+    this.props.name = value ?? this.name;
+  }
+
   private set description(value: string) {
     this.props.description = value ?? null;
   }
@@ -37,5 +41,18 @@ export default class Category extends Entity<CategoryProps> {
 
   get created_at() {
     return this.props.created_at;
+  }
+
+  update(data: { name: string; description: string }) {
+    this.name = data.name;
+    this.description = data.description;
+  }
+
+  activate() {
+    this.is_active = true;
+  }
+
+  deactivate() {
+    this.is_active = false;
   }
 }

@@ -121,4 +121,29 @@ describe("Category Unit Tests", () => {
     category = new Category({ name: "Movie", created_at });
     expect(category.created_at).toBe(created_at);
   });
+
+  test("update category method", () => {
+    const category = new Category({ name: "Movie" });
+    category.update({ name: "New Category", description: "New Description" });
+
+    expect(category.name).toBe("New Category");
+    expect(category.description).toBe("New Description");
+
+    category.update({ name: null, description: null });
+    expect(category.name).toBe("New Category");
+    expect(category.description).toBeNull();
+
+    category.update({ name: null, description: undefined });
+    expect(category.name).toBe("New Category");
+    expect(category.description).toBeNull();
+  });
+
+  test("activate & deactivate category method", () => {
+    const category = new Category({ name: "Movie" });
+    category.deactivate();
+    expect(category.is_active).toBe(false);
+
+    category.activate();
+    expect(category.is_active).toBe(true);
+  });
 });
