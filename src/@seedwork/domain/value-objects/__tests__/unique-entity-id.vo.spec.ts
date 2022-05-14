@@ -1,6 +1,6 @@
 import { validate } from "uuid";
-import InvalidUuidError from "../../errors/invalid-uuid.error";
-import UniqueEntityId from "./unique-entity-id.vo";
+import InvalidUuidError from "../../../errors/invalid-uuid.error";
+import UniqueEntityId from "./../unique-entity-id.vo";
 
 function spyValidateMethod() {
   return jest.spyOn(UniqueEntityId.prototype as any, "validate");
