@@ -69,8 +69,8 @@ describe("Category Unit Tests", () => {
       const category = new Category(i.props, i.id);
 
       expect(category.id).not.toBeNull();
-      expect(category.id).toBeInstanceOf(UniqueEntityId);
-      if (i.id?.length > 0) expect(category.id.value).toBe(i.id);
+      expect(category.uniqueEntityId).toBeInstanceOf(UniqueEntityId);
+      if (i.id?.length > 0) expect(category.id).toBe(i.id);
     });
 
     expect(() => {
