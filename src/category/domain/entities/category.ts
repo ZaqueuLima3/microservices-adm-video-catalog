@@ -1,3 +1,4 @@
+import ValidatorRules from "../../../@seedwork/validators/validator-rules";
 import Entity from "../../../@seedwork/domain/enity/entity";
 
 export type CategoryProps = {
@@ -9,10 +10,31 @@ export type CategoryProps = {
 
 export default class Category extends Entity<CategoryProps> {
   constructor(public readonly props: CategoryProps, id?: string) {
+    Category.validate(props);
     super(props, id);
     this.description = this.props.description;
     this.is_active = this.props.is_active;
     this.props.created_at = this.props.created_at ?? new Date();
+  }
+
+  static validate(props: Omit<CategoryProps, "created_at">) {
+    ValidatorRules.values(props.name, "name").required().string();
+    ValidatorRules.values(props.description, "description").string();
+    ValidatorRules.values(props.is_active, "is_active").boolean();
+  }
+
+  update(data: { name: string; description: string }) {
+    Category.validate(data);
+    this.name = data.name;
+    this.description = data.description;
+  }
+
+  activate() {
+    this.is_active = true;
+  }
+
+  deactivate() {
+    this.is_active = false;
   }
 
   get name() {
@@ -24,7 +46,7 @@ export default class Category extends Entity<CategoryProps> {
   }
 
   private set name(value: string) {
-    this.props.name = value ?? this.name;
+    this.props.name = value;
   }
 
   private set description(value: string) {
@@ -41,18 +63,5 @@ export default class Category extends Entity<CategoryProps> {
 
   get created_at() {
     return this.props.created_at;
-  }
-
-  update(data: { name: string; description: string }) {
-    this.name = data.name;
-    this.description = data.description;
-  }
-
-  activate() {
-    this.is_active = true;
-  }
-
-  deactivate() {
-    this.is_active = false;
   }
 }
