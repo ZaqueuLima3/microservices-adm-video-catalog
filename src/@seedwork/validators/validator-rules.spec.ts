@@ -16,9 +16,9 @@ type ExpectedInvalidRule = {
 
 type ExpectedValidRule = Omit<ExpectedInvalidRule, "error">;
 
-function validationRule({ params = [], ...props }: ExpectedInvalidRule) {
+function validationRule({ params = [], ...props }: ExpectedValidRule) {
   const validator = ValidatorRules.values(props.value, props.property);
-  const method = validator[props.rule];
+  const method = validator[props.rule] as (...args: any[]) => ValidatorRules;
   method.apply(validator, params);
 }
 
