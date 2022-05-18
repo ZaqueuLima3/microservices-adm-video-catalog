@@ -8,6 +8,8 @@ export type CategoryProps = {
   created_at?: Date;
 };
 
+export const MAX_NAME_VALUE = 255;
+
 export default class Category extends Entity<CategoryProps> {
   constructor(public readonly props: CategoryProps, id?: string) {
     Category.validate(props);
@@ -18,7 +20,10 @@ export default class Category extends Entity<CategoryProps> {
   }
 
   static validate(props: Omit<CategoryProps, "created_at">) {
-    ValidatorRules.values(props.name, "name").required().string();
+    ValidatorRules.values(props.name, "name")
+      .required()
+      .string()
+      .maxLength(MAX_NAME_VALUE);
     ValidatorRules.values(props.description, "description").string();
     ValidatorRules.values(props.is_active, "is_active").boolean();
   }
