@@ -1,4 +1,4 @@
-import ValidationError from "../../../@seedwork/errors/validation-error";
+import ValidationError from "../../../@seedwork/domain/errors/validation-error";
 import Category, { MAX_NAME_VALUE } from "./category";
 
 describe("Category integration Tests", () => {
