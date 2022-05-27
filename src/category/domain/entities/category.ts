@@ -1,5 +1,6 @@
-import ValidatorRules from "../../../@seedwork/validators/validator-rules";
+import { EntityValidationError } from "../../../@seedwork/domain/errors/validation-error";
 import Entity from "../../../@seedwork/domain/enity/entity";
+import CategoryValidatorFactory from "../validators/category-validator";
 
 export type CategoryProps = {
   name: string;
@@ -19,13 +20,12 @@ export default class Category extends Entity<CategoryProps> {
     this.props.created_at = this.props.created_at ?? new Date();
   }
 
-  static validate(props: Omit<CategoryProps, "created_at">) {
-    ValidatorRules.values(props.name, "name")
-      .required()
-      .string()
-      .maxLength(MAX_NAME_VALUE);
-    ValidatorRules.values(props.description, "description").string();
-    ValidatorRules.values(props.is_active, "is_active").boolean();
+  static validate(props: CategoryProps) {
+    const validator = CategoryValidatorFactory.create();
+    const isValid = validator.validate(props);
+    if (!isValid) {
+      throw new EntityValidationError(validator.errors);
+    }
   }
 
   update(data: { name: string; description: string }) {
