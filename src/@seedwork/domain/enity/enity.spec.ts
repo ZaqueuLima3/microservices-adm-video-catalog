@@ -39,6 +39,6 @@ describe("Enityt Unit Tests", () => {
       ...arrange,
     };
     const entity = new StubEntity(arrange, id);
-    expect(entity.toJson()).toStrictEqual(expected);
+    expect(entity.toJSON()).toStrictEqual(expected);
   });
 });
