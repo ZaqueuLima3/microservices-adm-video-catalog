@@ -3,7 +3,7 @@ import NotFoundError from "../errors/not-found.error";
 import UniqueEntityId from "../value-objects/unique-entity-id.vo";
 import { RepositoryInterface } from "./repostiroy-contracts";
 
-export default abstract class InMemoryRepository<E extends Entity>
+export abstract class InMemoryRepository<E extends Entity>
   implements RepositoryInterface<E>
 {
   items: E[] = [];
