@@ -1,5 +1,5 @@
-import { RepositoryInterface } from "../../../@seedwork/domain/repository/repostiroy-contracts";
+import { SearchableRepositoryInterface } from "../../../@seedwork/domain/repository/repostiroy-contracts";
 import Category from "../entities/category";
 
 export default interface CategoryRepository
-  extends RepositoryInterface<Category> {}
+  extends SearchableRepositoryInterface<Category, any, any> {}
