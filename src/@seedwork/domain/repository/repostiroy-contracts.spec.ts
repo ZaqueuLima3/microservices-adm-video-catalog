@@ -1,4 +1,4 @@
-import { SearchParams } from "./repostiroy-contracts";
+import { SearchParams, SearchResult } from "./repostiroy-contracts";
 
 describe("SeachParams Unit Tests", () => {
   test("page prop", () => {
@@ -144,5 +144,79 @@ describe("SeachParams Unit Tests", () => {
       params = new SearchParams(item.input as any);
       expect(params.filter).toBe(item.expected);
     });
+  });
+});
+
+describe("SearcgResult Unit Tests", () => {
+  test("constructor props", () => {
+    let result = new SearchResult({
+      items: ["entity1", "entity2"] as any,
+      total: 4,
+      current_page: 1,
+      per_page: 2,
+      sort: null,
+      sort_dir: null,
+      filter: null,
+    });
+
+    expect(result.toJSON()).toStrictEqual({
+      items: ["entity1", "entity2"],
+      total: 4,
+      current_page: 1,
+      per_page: 2,
+      sort: null,
+      sort_dir: null,
+      filter: null,
+      last_page: 2,
+    });
+
+    result = new SearchResult({
+      items: ["entity1", "entity2"] as any,
+      total: 4,
+      current_page: 1,
+      per_page: 2,
+      sort: "name",
+      sort_dir: "asc",
+      filter: "test",
+    });
+
+    expect(result.toJSON()).toStrictEqual({
+      items: ["entity1", "entity2"],
+      total: 4,
+      current_page: 1,
+      per_page: 2,
+      last_page: 2,
+      sort: "name",
+      sort_dir: "asc",
+      filter: "test",
+    });
+  });
+
+  it("should set last_page equal 1 when per_page field is greater than total field", () => {
+    let result = new SearchResult({
+      items: ["entity1", "entity2"] as any,
+      total: 4,
+      current_page: 1,
+      per_page: 15,
+      sort: null,
+      sort_dir: null,
+      filter: null,
+    });
+
+    expect(result.last_page).toBe(1);
+  });
+
+  test("last_page prop when total is not multiple of per_page", () => {
+    let result = new SearchResult({
+      items: ["entity1", "entity2"] as any,
+      total: 101,
+      current_page: 1,
+      per_page: 20,
+      sort: null,
+      sort_dir: null,
+      filter: null,
+    });
+
+    expect(result.last_page).toBe(6);
   });
 });
