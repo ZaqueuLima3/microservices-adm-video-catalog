@@ -1,4 +1,4 @@
-import { SearchParams, SearchResult } from "./repostiroy-contracts";
+import { SearchParams, SearchResult } from "./../repostiroy-contracts";
 
 describe("SeachParams Unit Tests", () => {
   test("page prop", () => {
@@ -85,7 +85,7 @@ describe("SeachParams Unit Tests", () => {
     const arrange = [
       { input: { sort: null, sort_dir: "asc" }, expected: null },
       { input: { sort: undefined, sort_dir: "asc" }, expected: null },
-      { input: { sort: "", sort_dir: "asc" }, expected: null },
+      { input: { sort: "", sort_dir: "asc" }, expected: null as string | null },
 
       { input: { sort_dir: null }, expected: "asc" },
       { input: { sort_dir: undefined }, expected: "asc" },

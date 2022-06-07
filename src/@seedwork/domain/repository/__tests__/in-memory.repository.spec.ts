@@ -1,8 +1,7 @@
-import { assert } from "console";
-import Entity from "../enity/entity";
-import NotFoundError from "../errors/not-found.error";
-import UniqueEntityId from "../value-objects/unique-entity-id.vo";
-import { InMemoryRepository } from "./in-memory.repository";
+import Entity from "../../enity/entity";
+import NotFoundError from "../../errors/not-found.error";
+import UniqueEntityId from "../../value-objects/unique-entity-id.vo";
+import { InMemoryRepository } from "./../in-memory.repository";
 
 type StubEntityProps = {
   name: string;
