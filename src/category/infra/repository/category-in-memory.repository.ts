@@ -4,4 +4,12 @@ import CategoryRepository from "../../domain/repository/category.repository";
 
 export default class CategoryInMemoryRepository
   extends InMemorySearchableRepository<Category>
-  implements CategoryRepository {}
+  implements CategoryRepository
+{
+  protected applyFilter(
+    items: Category[],
+    filter: string
+  ): Promise<Category[]> {
+    return Promise.reject(() => [] as Category[]);
+  }
+}
