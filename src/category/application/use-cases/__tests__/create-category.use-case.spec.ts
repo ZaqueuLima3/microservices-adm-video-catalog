@@ -13,7 +13,7 @@ describe("CreateCategoryUseCase Unit Tests", () => {
 
   it("should create a category", async () => {
     let output = await createCategoryUseCase.execute({ name: "test" });
-    let items = await repository["items"];
+    let items = repository.items;
     expect(output).toStrictEqual({
       id: items[0].id.toString(),
       name: "test",
@@ -27,7 +27,7 @@ describe("CreateCategoryUseCase Unit Tests", () => {
       description: "some description",
       is_active: false,
     });
-    items = await repository["items"];
+    items = repository.items;
     expect(output).toStrictEqual({
       id: items[1].id.toString(),
       name: "test",

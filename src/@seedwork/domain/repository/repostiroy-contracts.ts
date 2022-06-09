@@ -2,6 +2,7 @@ import Entity from "../enity/entity";
 import UniqueEntityId from "../value-objects/unique-entity-id.vo";
 
 export interface RepositoryInterface<E extends Entity> {
+  items: E[];
   insert(entity: E): Promise<void>;
   findById(id: string | UniqueEntityId): Promise<E>;
   findAll(): Promise<Array<E>>;
