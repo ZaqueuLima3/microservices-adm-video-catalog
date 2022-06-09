@@ -1,23 +1,19 @@
-import Category from "../../domain/entities/category";
 import { CategoryOutput } from "../dto/category-output.dto";
 import CategoryRepository from "./../../domain/repository/category.repository";
 
 export type Input = {
-  name: string;
-  description?: string;
-  is_active?: boolean;
+  id: string;
 };
 
 export type Output = CategoryOutput;
 
-export default class CreateCategoryUseCase {
+export default class GetCategoryUseCase {
   constructor(
     private readonly categoryRepository: CategoryRepository.Repository
   ) {}
 
   async execute(input: Input): Promise<Output> {
-    const entity = new Category(input);
-    await this.categoryRepository.insert(entity);
+    const entity = await this.categoryRepository.findById(input.id);
     return {
       id: entity.id,
       name: entity.name,
