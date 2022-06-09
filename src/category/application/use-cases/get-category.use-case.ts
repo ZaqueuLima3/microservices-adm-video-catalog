@@ -1,3 +1,4 @@
+import UseCase from "../../../@seedwork/application/use-case";
 import { CategoryOutput } from "../dto/category-output.dto";
 import CategoryRepository from "./../../domain/repository/category.repository";
 
@@ -7,7 +8,7 @@ export type Input = {
 
 export type Output = CategoryOutput;
 
-export default class GetCategoryUseCase {
+export default class GetCategoryUseCase implements UseCase<Input, Output> {
   constructor(
     private readonly categoryRepository: CategoryRepository.Repository
   ) {}
