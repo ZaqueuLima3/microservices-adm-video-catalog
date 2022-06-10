@@ -1,5 +1,4 @@
 import UseCase from "../../../@seedwork/application/use-case";
-import Category from "../../domain/entities/category";
 import { CategoryOutput } from "../dto/category-output.dto";
 import { CategoryOutputMapper } from "../mappers/category-output.mapper";
 import { CategoryRepository } from "./../../domain/repository/category.repository";
