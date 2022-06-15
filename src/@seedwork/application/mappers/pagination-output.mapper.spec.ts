@@ -1,5 +1,5 @@
-import { SearchResult } from "../../domain/repository/repostiroy-contracts";
-import { PaginationOutputMapper } from "./pagination-output.mapper";
+import { SearchResult } from "#seedwork/domain/repository/repostiroy-contracts";
+import { PaginationOutputMapper } from "#seedwork/application/mappers/pagination-output.mapper";
 
 describe("PaginationOutputMapper Unit Tests", () => {
   it("should conver a SearchResult to an output", () => {

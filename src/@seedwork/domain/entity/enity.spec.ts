@@ -1,6 +1,6 @@
 import { validate } from "uuid";
-import UniqueEntityId from "../value-objects/unique-entity-id.vo";
-import Entity from "./entity";
+import UniqueEntityId from "#seedwork/domain/value-objects/unique-entity-id.vo";
+import Entity from "#seedwork/domain/entity/entity";
 
 type Props = {
   prop1: string;
@@ -8,7 +8,7 @@ type Props = {
 };
 
 class StubEntity extends Entity<Props> {}
-describe("Enityt Unit Tests", () => {
+describe("Entiyt Unit Tests", () => {
   it("should set props and id", () => {
     const arrange = { prop1: "new value", prop2: 5 };
     const entity = new StubEntity(arrange);

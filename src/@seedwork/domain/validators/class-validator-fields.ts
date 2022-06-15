@@ -1,7 +1,7 @@
 import { validateSync } from "class-validator";
 import ValidatorFieldsInterface, {
   FieldErrors,
-} from "./validator-fields-interface";
+} from "#seedwork/domain/validators/validator-fields-interface";
 
 export default abstract class ClassValidatorFields<PropsValidated>
   implements ValidatorFieldsInterface<PropsValidated>

@@ -1,8 +1,8 @@
-import UseCase from "../../../@seedwork/application/use-case";
-import Category from "../../domain/entities/category";
-import { CategoryOutput } from "../dto/category-output.dto";
-import { CategoryOutputMapper } from "../mappers/category-output.mapper";
-import CategoryRepository from "./../../domain/repository/category.repository";
+import UseCase from "#seedwork/application/use-case";
+import Category from "#category/domain/entities/category";
+import { CategoryOutput } from "#category/application/dto/category-output.dto";
+import { CategoryOutputMapper } from "#category/application/mappers/category-output.mapper";
+import CategoryRepository from "#category/domain/repository/category.repository";
 
 export type Input = {
   name: string;

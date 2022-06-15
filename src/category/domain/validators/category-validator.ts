@@ -6,8 +6,8 @@ import {
   IsString,
   MaxLength,
 } from "class-validator";
-import ClassValidatorFields from "../../../@seedwork/domain/validators/class-validator-fields";
-import { CategoryProps } from "../entities/category";
+import ClassValidatorFields from "#seedwork/domain/validators/class-validator-fields";
+import { CategoryProps } from "#category/domain/entities/category";
 
 export class CategoryRules {
   @MaxLength(255)

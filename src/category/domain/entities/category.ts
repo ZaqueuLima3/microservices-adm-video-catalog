@@ -1,6 +1,6 @@
-import { EntityValidationError } from "../../../@seedwork/domain/errors/validation-error";
-import Entity from "../../../@seedwork/domain/enity/entity";
-import CategoryValidatorFactory from "../validators/category-validator";
+import { EntityValidationError } from "#seedwork/domain/errors/validation-error";
+import Entity from "#seedwork/domain/entity/entity";
+import CategoryValidatorFactory from "#category/domain/validators/category-validator";
 
 export type CategoryProps = {
   name: string;

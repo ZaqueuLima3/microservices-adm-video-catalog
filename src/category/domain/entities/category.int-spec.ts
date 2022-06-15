@@ -1,4 +1,4 @@
-import Category from "./category";
+import Category from "#category/domain/entities/category";
 
 describe("Category integration Tests", () => {
   describe("create method", () => {
