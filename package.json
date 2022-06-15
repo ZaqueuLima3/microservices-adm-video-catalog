@@ -27,7 +27,9 @@
     "regenerator-runtime": "^0.13.9",
     "ts-jest": "^28.0.5",
     "ts-node": "^10.8.1",
-    "typescript": "^4.7.3"
+    "ttypescript": "^1.5.13",
+    "typescript": "^4.7.3",
+    "typescript-transform-paths": "^3.3.1"
   },
   "dependencies": {
     "class-validator": "^0.13.2",

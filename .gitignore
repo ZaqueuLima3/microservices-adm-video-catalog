@@ -3,3 +3,4 @@ tsconfig.tsbuildinfo
 .history/
 .zsh_history
 __coverage
+dist
