@@ -29,7 +29,7 @@ describe("UpdateCategoryUseCase Unit Tests", () => {
 
   it("should throws error when entity not found", async () => {
     const spyFindById = jest.spyOn(repository, "findById");
-    expect(() =>
+    await expect(
       updateCategoryUseCase.execute({ id: "fake-id", name: "fake" })
     ).rejects.toThrow(new NotFoundError("Entity Not Found using ID fake-id"));
     expect(spyFindById).toHaveBeenCalledTimes(1);

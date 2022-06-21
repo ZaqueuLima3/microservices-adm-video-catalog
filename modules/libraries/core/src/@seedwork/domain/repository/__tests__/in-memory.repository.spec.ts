@@ -25,14 +25,14 @@ describe("InMemoryRepositorty Unit Tests", () => {
     expect(repository.items[0].toJSON()).toStrictEqual(entity.toJSON());
   });
 
-  it("should throws error when entity not found", () => {
+  it("should throws error when entity not found", async () => {
     let id: string | UniqueEntityId = "invalid_id";
-    expect(repository.findById(id)).rejects.toThrow(
+    await expect(repository.findById(id)).rejects.toThrow(
       new NotFoundError(`Entity Not Found using ID ${id}`)
     );
 
     id = new UniqueEntityId();
-    expect(repository.findById(id)).rejects.toThrow(
+    await expect(repository.findById(id)).rejects.toThrow(
       new NotFoundError(`Entity Not Found using ID ${id}`)
     );
   });
@@ -56,9 +56,9 @@ describe("InMemoryRepositorty Unit Tests", () => {
     expect(entities).toStrictEqual([entity]);
   });
 
-  it("should throws error on update when entity not found", () => {
+  it("should throws error on update when entity not found", async () => {
     const entity = new StubEntity({ name: "value", price: 5 });
-    expect(repository.update(entity)).rejects.toThrow(
+    await expect(repository.update(entity)).rejects.toThrow(
       new NotFoundError(`Entity Not Found using ID ${entity.id}`)
     );
   });
@@ -75,14 +75,15 @@ describe("InMemoryRepositorty Unit Tests", () => {
     expect(repository.items[0].toJSON).toStrictEqual(entityUpdated.toJSON);
   });
 
-  it("should throws error on delete when entity not found", () => {
+  it("should throws error on delete when entity not found", async () => {
     let id: string | UniqueEntityId = "invalid_id";
-    expect(repository.delete(id)).rejects.toThrow(
+
+    await expect(repository.delete(id)).rejects.toThrow(
       new NotFoundError(`Entity Not Found using ID ${id}`)
     );
 
     id = new UniqueEntityId();
-    expect(repository.delete(id)).rejects.toThrow(
+    await expect(repository.delete(id)).rejects.toThrow(
       new NotFoundError(`Entity Not Found using ID ${id}`)
     );
   });

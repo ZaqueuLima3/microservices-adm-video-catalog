@@ -35,7 +35,7 @@ export abstract class InMemoryRepository<E extends Entity>
 
   async delete(id: string | UniqueEntityId): Promise<void> {
     const _id = `${id}`;
-    this._get(_id);
+    await this._get(_id);
     const index = this.items.findIndex((ett) => ett.id === _id);
     this.items.splice(index, 1);
   }
