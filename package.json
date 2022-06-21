@@ -11,7 +11,8 @@
     "build:core": "npm run build -w @micro-videos/core",
     "prestart:dev": "npm run build -w @micro-videos/core",
     "build:watch:modules": "npm run build:w -w @micro-videos/core",
-    "start:dev": "npm run build:watch:modules & npm run start:dev -w @micro-videos/app"
+    "start:dev": "npm run build:watch:modules & npm run start:dev -w @micro-videos/app",
+    "test": "jest"
   },
   "repository": {
     "type": "git",

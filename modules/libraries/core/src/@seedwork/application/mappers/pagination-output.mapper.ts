@@ -1,5 +1,5 @@
-import { SearchResult } from "#seedwork/domain/repository/repostiroy-contracts";
-import { PaginationOutput } from "#seedwork/application/dto/pagination-output.dto";
+import { SearchResult } from "../../domain/repository/repostiroy-contracts";
+import { PaginationOutput } from "../dto/pagination-output.dto";
 
 export class PaginationOutputMapper {
   static toOutput(result: SearchResult): Omit<PaginationOutput, "items"> {

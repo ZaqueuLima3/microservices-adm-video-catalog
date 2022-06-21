@@ -1,6 +1,6 @@
-import Entity from "#seedwork/domain/entity/entity";
-import NotFoundError from "#seedwork/domain/errors/not-found.error";
-import UniqueEntityId from "#seedwork/domain/value-objects/unique-entity-id.vo";
+import Entity from "../entity/entity";
+import NotFoundError from "../errors/not-found.error";
+import UniqueEntityId from "../value-objects/unique-entity-id.vo";
 import {
   RepositoryInterface,
   SearchableRepositoryInterface,

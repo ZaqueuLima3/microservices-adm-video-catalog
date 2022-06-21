@@ -1,9 +1,6 @@
-import Entity from "#seedwork/domain/entity/entity";
-import { InMemorySearchableRepository } from "#seedwork/domain/repository/in-memory.repository";
-import {
-  SearchParams,
-  SearchResult,
-} from "#seedwork/domain/repository/repostiroy-contracts";
+import Entity from "../../entity/entity";
+import { InMemorySearchableRepository } from "../in-memory.repository";
+import { SearchParams, SearchResult } from "../repostiroy-contracts";
 
 type StubEntityProps = {
   name: string;

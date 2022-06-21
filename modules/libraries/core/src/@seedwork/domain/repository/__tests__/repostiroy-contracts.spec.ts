@@ -1,7 +1,4 @@
-import {
-  SearchParams,
-  SearchResult,
-} from "#seedwork/domain/repository/repostiroy-contracts";
+import { SearchParams, SearchResult } from "../repostiroy-contracts";
 
 describe("SeachParams Unit Tests", () => {
   test("page prop", () => {

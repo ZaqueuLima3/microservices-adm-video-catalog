@@ -1,5 +1,5 @@
-import { Category } from "#category/domain/entities/category";
-import { CategoryOutput } from "#category/application/dto/category-output.dto";
+import { Category } from "../../domain/entities/category";
+import { CategoryOutput } from "../dto/category-output.dto";
 
 export class CategoryOutputMapper {
   static toCategoryOutput(category: Category): CategoryOutput {

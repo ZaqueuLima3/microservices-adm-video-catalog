@@ -1,6 +1,6 @@
 import { validate } from "uuid";
-import InvalidUuidError from "#seedwork/domain/errors/invalid-uuid.error";
-import UniqueEntityId from "#seedwork/domain/value-objects/unique-entity-id.vo";
+import InvalidUuidError from "../../errors/invalid-uuid.error";
+import UniqueEntityId from "../../value-objects/unique-entity-id.vo";
 
 function spyValidateMethod() {
   return jest.spyOn(UniqueEntityId.prototype as any, "validate");

@@ -1,7 +1,7 @@
 import CategoryValidatorFactory, {
   CategoryRules,
   CategoryValidator,
-} from "#category/domain/validators/category-validator";
+} from "./category-validator";
 
 describe("CategoryValidator Tests", () => {
   let validator: CategoryValidator;

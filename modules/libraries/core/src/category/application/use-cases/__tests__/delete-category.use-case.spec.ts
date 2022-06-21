@@ -1,8 +1,8 @@
-import DeleteCategoryUseCase from "#category/application/use-cases/delete-category.use-case";
-import CategoryInMemoryRepository from "#category/infra/repository/category-in-memory.repository";
-import CategoryRepository from "#category/domain/repository/category.repository";
-import NotFoundError from "#seedwork/domain/errors/not-found.error";
-import { Category } from "#category/domain/entities/category";
+import DeleteCategoryUseCase from "../delete-category.use-case";
+import CategoryInMemoryRepository from "../../../infra/repository/category-in-memory.repository";
+import CategoryRepository from "../../../domain/repository/category.repository";
+import NotFoundError from "../../../../@seedwork/domain/errors/not-found.error";
+import { Category } from "../../../domain/entities/category";
 
 describe("DeleteCategoryUseCase Unit Tests", () => {
   let deleteCategoryUseCase: DeleteCategoryUseCase;

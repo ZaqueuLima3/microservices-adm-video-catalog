@@ -1,5 +1,5 @@
-import { Category } from "#category/domain/entities/category";
-import { CategoryOutputMapper } from "#category/application/mappers/category-output.mapper";
+import { Category } from "../../domain/entities/category";
+import { CategoryOutputMapper } from "./category-output.mapper";
 
 describe("CategoryOutputMapper Unit Tests", () => {
   it("should convert a category in output", () => {

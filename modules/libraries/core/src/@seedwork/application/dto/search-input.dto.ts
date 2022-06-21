@@ -1,4 +1,4 @@
-import { SortDirection } from "#seedwork/domain/repository/repostiroy-contracts";
+import { SortDirection } from "../../domain/repository/repostiroy-contracts";
 
 export type SearchInput<Filter = string> = {
   page?: number;

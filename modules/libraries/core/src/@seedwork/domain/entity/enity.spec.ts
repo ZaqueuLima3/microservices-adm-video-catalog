@@ -1,6 +1,6 @@
 import { validate } from "uuid";
-import UniqueEntityId from "#seedwork/domain/value-objects/unique-entity-id.vo";
-import Entity from "#seedwork/domain/entity/entity";
+import UniqueEntityId from "../value-objects/unique-entity-id.vo";
+import Entity from "./entity";
 
 type Props = {
   prop1: string;
