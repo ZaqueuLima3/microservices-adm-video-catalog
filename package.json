@@ -1,37 +1,28 @@
 {
-  "name": "micro-adm-video-catalog",
-  "version": "1.0.0",
-  "description": "Admin video catalog",
+  "name": "micro-videos-admin",
+  "version": "0.0.1",
+  "description": "",
   "main": "index.js",
+  "workspaces": [
+    "./modules/app",
+    "./modules/libraries/core"
+  ],
   "scripts": {
-    "ts-node": "ts-node",
-    "tsc": "tsc",
-    "tsc:check": "tsc --noEmit",
-    "clean:tsc": "rm tsconfig.tsbuildinfo",
-    "test": "npm run tsc:check && jest",
-    "test:watch": "npm run test -- --watch",
-    "test:cov": "npm run test -- --coverage"
+    "build:core": "npm run build -w @micro-videos/core",
+    "prestart:dev": "npm run build -w @micro-videos/core",
+    "build:watch:modules": "npm run build:w -w @micro-videos/core",
+    "start:dev": "npm run build:watch:modules & npm run start:dev -w @micro-videos/app",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZaqueuLima3/microservices-adm-video-catalog.git"
   },
   "keywords": [],
-  "author": "zaqueusantos",
+  "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@swc/cli": "^0.1.57",
-    "@swc/core": "^1.2.203",
-    "@swc/jest": "^0.2.21",
-    "@types/jest": "^28.1.1",
-    "@types/lodash": "^4.14.182",
-    "@types/node": "^17.0.42",
-    "@types/uuid": "^8.3.4",
-    "jest": "^28.1.1",
-    "regenerator-runtime": "^0.13.9",
-    "ts-jest": "^28.0.5",
-    "ts-node": "^10.8.1",
-    "typescript": "^4.7.3"
+  "bugs": {
+    "url": "https://github.com/ZaqueuLima3/microservices-adm-video-catalog/issues"
   },
-  "dependencies": {
-    "class-validator": "^0.13.2",
-    "lodash": "^4.17.21",
-    "uuid": "^8.3.2"
-  }
+  "homepage": "https://github.com/ZaqueuLima3/microservices-adm-video-catalog#readme"
 }
