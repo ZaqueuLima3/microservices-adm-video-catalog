@@ -3,7 +3,7 @@ import { CategoryOutput } from "../dto/category-output.dto";
 import { CategoryOutputMapper } from "../mappers/category-output.mapper";
 import CategoryRepository from "../../domain/repository/category.repository";
 
-namespace GetCategoryUseCase {
+export namespace GetCategoryUseCase {
   export type Input = {
     id: string;
   };
