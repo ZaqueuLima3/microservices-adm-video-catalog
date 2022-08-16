@@ -188,4 +188,75 @@ describe("CategorySequelizeRepository", () => {
       expectedItems.map((item) => item.toJSON())
     );
   });
+
+  it("should apply paginate and sort", async () => {
+    const defaultProps = {
+      description: null,
+      is_active: true,
+      created_at: new Date(),
+    };
+    const categoriesProp = [
+      { id: chance.guid({ version: 4 }), name: "b", ...defaultProps },
+      { id: chance.guid({ version: 4 }), name: "a", ...defaultProps },
+      { id: chance.guid({ version: 4 }), name: "d", ...defaultProps },
+      { id: chance.guid({ version: 4 }), name: "e", ...defaultProps },
+      { id: chance.guid({ version: 4 }), name: "c", ...defaultProps },
+    ];
+    const categories = await CategoryModel.bulkCreate(categoriesProp);
+
+    let expected = {
+      items: [categories[1], categories[0]],
+      total: 5,
+      current_page: 1,
+      per_page: 2,
+      sort: "name",
+      sort_dir: "asc",
+      filter: null,
+    };
+
+    const arrange = [
+      {
+        input: { page: 1, per_page: 2, sort: "name" },
+        output: { ...expected },
+      },
+      {
+        input: { page: 2, per_page: 2, sort: "name" },
+        output: {
+          ...expected,
+          items: [categories[4], categories[2]],
+          current_page: 2,
+        },
+      },
+      {
+        input: { page: 1, per_page: 2, sort: "name", sort_dir: "desc" },
+        output: {
+          ...expected,
+          items: [categories[3], categories[2]],
+          sort_dir: "desc",
+        },
+      },
+
+      {
+        input: { page: 2, per_page: 2, sort: "name", sort_dir: "desc" },
+        output: {
+          ...expected,
+          items: [categories[4], categories[0]],
+          current_page: 2,
+          sort_dir: "desc",
+        },
+      },
+    ];
+
+    for (const item of arrange) {
+      let result = await repository.search(
+        new CategoryRepository.SearchParams(item.input as any)
+      );
+      const { items, ...params } = item.output;
+      expect(result).toBeInstanceOf(CategoryRepository.SearchResult);
+      expect(result).toMatchObject(params);
+      expect(result.items.map((i) => i.toJSON())).toMatchObject(
+        items.map((i) => i.toJSON())
+      );
+    }
+  });
 });
