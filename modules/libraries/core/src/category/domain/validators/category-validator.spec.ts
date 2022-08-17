@@ -10,7 +10,7 @@ describe("CategoryValidator Tests", () => {
     validator = CategoryValidatorFactory.create();
   });
 
-  test("invalidation cases for name field", () => {
+  describe("invalidation cases for name field", () => {
     const errors = [
       "name should not be empty",
       "name must be a string",
@@ -23,25 +23,25 @@ describe("CategoryValidator Tests", () => {
       { data: { name: 5 as any }, expect: [errors[1], errors[2]] },
     ];
 
-    arrange.forEach((item) => {
+    test.each(arrange)("validade %j", (item) => {
       const isValid = validator.validate(item.data);
       expect(isValid).toBeFalsy();
       expect(validator.errors["name"]).toStrictEqual(item.expect);
     });
   });
 
-  test("invalidation cases for description field", () => {
+  describe("invalidation cases for description field", () => {
     const errors = ["description must be a string"];
     const arrange = [{ data: { description: 5 as any }, expect: errors }];
 
-    arrange.forEach((item) => {
+    test.each(arrange)("validade %j", (item) => {
       const isValid = validator.validate({ name: "some value", ...item.data });
       expect(isValid).toBeFalsy();
       expect(validator.errors["description"]).toStrictEqual(item.expect);
     });
   });
 
-  test("invalidation cases for is_active field", () => {
+  describe("invalidation cases for is_active field", () => {
     const errors = ["is_active must be a boolean value"];
     const arrange = [
       { data: { is_active: 5 as any }, expect: errors },
@@ -49,14 +49,14 @@ describe("CategoryValidator Tests", () => {
       { data: { is_active: 1 as any }, expect: errors },
     ];
 
-    arrange.forEach((item) => {
+    test.each(arrange)("validade %j", (item) => {
       const isValid = validator.validate({ name: "some value", ...item.data });
       expect(isValid).toBeFalsy();
       expect(validator.errors["is_active"]).toStrictEqual(item.expect);
     });
   });
 
-  test("valid cases for fields", () => {
+  describe("valid cases for fields", () => {
     type Arrange = {
       name: string;
       description?: string;
@@ -70,7 +70,7 @@ describe("CategoryValidator Tests", () => {
       { name: "some value", is_active: false },
     ];
 
-    arrange.forEach((item) => {
+    test.each(arrange)("validade %j", (item) => {
       const isValid = validator.validate(item);
       expect(isValid).toBeTruthy();
       expect(validator.validateData).toStrictEqual(new CategoryRules(item));
