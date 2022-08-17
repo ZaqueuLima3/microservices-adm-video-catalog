@@ -152,7 +152,7 @@ describe("CategorySequelizeRepository", () => {
       CategoryModelMapper.toEntity(categories[0]),
       CategoryModelMapper.toEntity(categories[2]),
     ];
-    let expectedParams = {
+    let expected = {
       total: 3,
       current_page: 1,
       per_page: 2,
@@ -168,12 +168,12 @@ describe("CategorySequelizeRepository", () => {
         filter: "TEST",
       })
     );
-    const { items: itemsResult, ...restResultParams } = result;
+    const { items: itemsResult, ...output } = result;
     expect(result).toBeInstanceOf(CategoryRepository.SearchResult);
     expect(itemsResult.map((item) => item.toJSON())).toMatchObject(
       expectedItems.map((item) => item.toJSON())
     );
-    expect(restResultParams).toStrictEqual(expectedParams);
+    expect(output).toStrictEqual(expected);
 
     expectedItems = [CategoryModelMapper.toEntity(categories[3])];
     result = await repository.search(
@@ -251,9 +251,56 @@ describe("CategorySequelizeRepository", () => {
       let result = await repository.search(
         new CategoryRepository.SearchParams(item.input as any)
       );
-      const { items, ...params } = item.output;
+      const { items, ...output } = item.output;
       expect(result).toBeInstanceOf(CategoryRepository.SearchResult);
-      expect(result).toMatchObject(params);
+      expect(result).toMatchObject(output);
+      expect(result.items.map((i) => i.toJSON())).toMatchObject(
+        items.map((i) => i.toJSON())
+      );
+    }
+  });
+
+  it("should aplly pagination, filter and sort", async () => {
+    const defaultProps = {
+      description: null,
+      is_active: true,
+      created_at: new Date(),
+    };
+    const categoriesProp = [
+      { id: chance.guid({ version: 4 }), name: "test", ...defaultProps },
+      { id: chance.guid({ version: 4 }), name: "a", ...defaultProps },
+      { id: chance.guid({ version: 4 }), name: "TEST", ...defaultProps },
+      { id: chance.guid({ version: 4 }), name: "e", ...defaultProps },
+      { id: chance.guid({ version: 4 }), name: "TeSt", ...defaultProps },
+    ];
+    const categories = await CategoryModel.bulkCreate(categoriesProp);
+    const expected = {
+      items: [categories[2], categories[4]],
+      total: 3,
+      current_page: 1,
+      per_page: 2,
+      sort: "name",
+      sort_dir: "asc",
+      filter: "TEST",
+    };
+    const arrange = [
+      {
+        input: { page: 1, per_page: 2, sort: "name", filter: "TEST" },
+        output: { ...expected, items: [categories[2], categories[4]] },
+      },
+      {
+        input: { page: 2, per_page: 2, sort: "name", filter: "TEST" },
+        output: { ...expected, items: [categories[0]], current_page: 2 },
+      },
+    ];
+
+    for (const item of arrange) {
+      let result = await repository.search(
+        new CategoryRepository.SearchParams(item.input as any)
+      );
+      const { items, ...output } = item.output;
+      expect(result).toBeInstanceOf(CategoryRepository.SearchResult);
+      expect(result).toMatchObject(output);
       expect(result.items.map((i) => i.toJSON())).toMatchObject(
         items.map((i) => i.toJSON())
       );
